@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://hcmc.uvic.ca/ns/staticSearch">
+    <params>
+        <searchFile>search.html</searchFile>
+        <versionFile>0.5</versionFile>
+        <stemmerFolder>stripDiacriticsHIMME</stemmerFolder>
+        <recurse>true</recurse>
+        <phrasalSearch>true</phrasalSearch>
+        <wildcardSearch>true</wildcardSearch>
+        <createContexts>true</createContexts>
+        <!--NOTE: If phrasalSearch is set to TRUE, then
+        maxContexts prop will be ignored-->
+        <maxKwicsToHarvest>3</maxKwicsToHarvest>
+        <maxKwicsToShow>3</maxKwicsToShow>
+        <totalKwicLength>15</totalKwicLength>
+        <kwicTruncateString>...</kwicTruncateString>
+        <verbose>true</verbose>
+        <stopwordsFile>stopwords.txt</stopwordsFile>
+        <dictionaryFile>dictionary.txt</dictionaryFile>
+        <indentJSON>false</indentJSON>
+        <outputFolder>ssHIMME</outputFolder>
+    </params>
+    
+    <rules>        
+        <rule weight="4" match="h1 | h2"/>
+        <rule weight="0" match="span[@class='lineNum']"/>
+        <rule weight="0" match="script | style"/>
+        <rule match="div[@id='sources']" weight="0"/>
+        <rule match="*[@class='noIndex']" weight="0"/>
+        <rule match="span[@id='syriaca-id']" weight="0"/>
+        <!-- syriaca-id -->
+    </rules>
+    <contexts>
+        <context match="span[@class='tei-listPlace']" label="tei-body"/>
+    </contexts>
+    <excludes>
+        <context type="filter"  match="//div[@id='sources']" label="tei-bibl"/>
+    </excludes>
+</config>
